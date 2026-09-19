@@ -1,0 +1,19 @@
+[package]
+name = "auto-inviter-bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# teloxide 0.17 = Bot API 9.1; rustls вместо native-tls ради статической musl-сборки
+teloxide = { version = "0.17", default-features = false, features = ["macros", "ctrlc_handler", "rustls"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "sqlite", "migrate", "macros", "derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dotenvy = "0.15"
+anyhow = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+
+[profile.release]
+strip = true
+lto = true

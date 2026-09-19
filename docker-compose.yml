@@ -1,0 +1,9 @@
+services:
+  bot:
+    build: .
+    container_name: auto-inviter-bot
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/data
+    # long polling: только исходящие соединения, порты не публикуются
